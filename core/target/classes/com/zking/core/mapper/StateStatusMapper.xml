@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.core.mapper.StateStatusMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.core.model.StateStatus" >
+    <constructor >
+      <idArg column="asid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="asuserid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="asrealname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="asidcardno" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="asidimg" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="asidimg2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="astime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="asstate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="asditor" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    asid, asuserid, asrealname, asidcardno, asidimg, asidimg2, astime, asstate, asditor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_state_status
+    where asid = #{asid,jdbcType=BIGINT}
+  </select>
+  <select id="findByuserid" resultType="com.zking.core.model.StateStatus">
+    SELECT  <include refid="Base_Column_List"/>
+    from t_state_status where asuserid=#{asuserid}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_state_status
+    where asid = #{asid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.core.model.StateStatus" >
+    insert into t_state_status (asid, asuserid, asrealname, 
+      asidcardno, asidimg, asidimg2, 
+      astime, asstate, asditor
+      )
+    values (#{asid,jdbcType=BIGINT}, #{asuserid,jdbcType=BIGINT}, #{asrealname,jdbcType=BIGINT}, 
+      #{asidcardno,jdbcType=VARCHAR}, #{asidimg,jdbcType=VARCHAR}, #{asidimg2,jdbcType=VARCHAR}, 
+      #{astime,jdbcType=TIMESTAMP}, #{asstate,jdbcType=INTEGER}, #{asditor,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.core.model.StateStatus" >
+    insert into t_state_status
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="asid != null" >
+        asid,
+      </if>
+      <if test="asuserid != null" >
+        asuserid,
+      </if>
+      <if test="asrealname != null" >
+        asrealname,
+      </if>
+      <if test="asidcardno != null" >
+        asidcardno,
+      </if>
+      <if test="asidimg != null" >
+        asidimg,
+      </if>
+      <if test="asidimg2 != null" >
+        asidimg2,
+      </if>
+      <if test="astime != null" >
+        astime,
+      </if>
+      <if test="asstate != null" >
+        asstate,
+      </if>
+      <if test="asditor != null" >
+        asditor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="asid != null" >
+        #{asid,jdbcType=BIGINT},
+      </if>
+      <if test="asuserid != null" >
+        #{asuserid,jdbcType=BIGINT},
+      </if>
+      <if test="asrealname != null" >
+        #{asrealname,jdbcType=BIGINT},
+      </if>
+      <if test="asidcardno != null" >
+        #{asidcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="asidimg != null" >
+        #{asidimg,jdbcType=VARCHAR},
+      </if>
+      <if test="asidimg2 != null" >
+        #{asidimg2,jdbcType=VARCHAR},
+      </if>
+      <if test="astime != null" >
+        #{astime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="asstate != null" >
+        #{asstate,jdbcType=INTEGER},
+      </if>
+      <if test="asditor != null" >
+        #{asditor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="applyAuthentication" parameterType="com.zking.core.model.StateStatus">
+      update into t_state_status (asrealname,asidcardno)
+      values(#{asrealname},#{asidcardno})
+    </insert>
+  <insert id="insertImg" parameterType="com.zking.core.model.StateStatus">
+    insert into t_state_status (asuserid,asidimg)
+      values(#{asuserid},#{asidimg})
+  </insert>
+  <insert id="insertImg2" parameterType="com.zking.core.model.StateStatus">
+    insert into t_state_status (asuserid,asidimg2)
+      values(#{asuserid},#{asidimg2})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.core.model.StateStatus" >
+    update t_state_status
+    <set >
+      <if test="asuserid != null" >
+        asuserid = #{asuserid,jdbcType=BIGINT},
+      </if>
+      <if test="asrealname != null" >
+        asrealname = #{asrealname,jdbcType=BIGINT},
+      </if>
+      <if test="asidcardno != null" >
+        asidcardno = #{asidcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="asidimg != null" >
+        asidimg = #{asidimg,jdbcType=VARCHAR},
+      </if>
+      <if test="asidimg2 != null" >
+        asidimg2 = #{asidimg2,jdbcType=VARCHAR},
+      </if>
+      <if test="astime != null" >
+        astime = #{astime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="asstate != null" >
+        asstate = #{asstate,jdbcType=INTEGER},
+      </if>
+      <if test="asditor != null" >
+        asditor = #{asditor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where asid = #{asid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.core.model.StateStatus" >
+    update t_state_status
+    set asuserid = #{asuserid,jdbcType=BIGINT},
+      asrealname = #{asrealname,jdbcType=BIGINT},
+      asidcardno = #{asidcardno,jdbcType=VARCHAR},
+      asidimg = #{asidimg,jdbcType=VARCHAR},
+      asidimg2 = #{asidimg2,jdbcType=VARCHAR},
+      astime = #{astime,jdbcType=TIMESTAMP},
+      asstate = #{asstate,jdbcType=INTEGER},
+      asditor = #{asditor,jdbcType=VARCHAR}
+    where asid = #{asid,jdbcType=BIGINT}
+  </update>
+</mapper>

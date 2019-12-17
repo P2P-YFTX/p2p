@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.core.mapper.SysMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.core.model.SysMenu" >
+    <constructor >
+      <idArg column="smid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="smname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="smpath" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="smparameter" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="smmethod" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="smfunctiondesc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    smid, smname, smpath, smparameter, smmethod, smfunctiondesc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_menu
+    where smid = #{smid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sys_menu
+    where smid = #{smid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.core.model.SysMenu" >
+    insert into t_sys_menu (smid, smname, smpath, 
+      smparameter, smmethod, smfunctiondesc
+      )
+    values (#{smid,jdbcType=BIGINT}, #{smname,jdbcType=VARCHAR}, #{smpath,jdbcType=VARCHAR}, 
+      #{smparameter,jdbcType=VARCHAR}, #{smmethod,jdbcType=VARCHAR}, #{smfunctiondesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.core.model.SysMenu" >
+    insert into t_sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="smid != null" >
+        smid,
+      </if>
+      <if test="smname != null" >
+        smname,
+      </if>
+      <if test="smpath != null" >
+        smpath,
+      </if>
+      <if test="smparameter != null" >
+        smparameter,
+      </if>
+      <if test="smmethod != null" >
+        smmethod,
+      </if>
+      <if test="smfunctiondesc != null" >
+        smfunctiondesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="smid != null" >
+        #{smid,jdbcType=BIGINT},
+      </if>
+      <if test="smname != null" >
+        #{smname,jdbcType=VARCHAR},
+      </if>
+      <if test="smpath != null" >
+        #{smpath,jdbcType=VARCHAR},
+      </if>
+      <if test="smparameter != null" >
+        #{smparameter,jdbcType=VARCHAR},
+      </if>
+      <if test="smmethod != null" >
+        #{smmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="smfunctiondesc != null" >
+        #{smfunctiondesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.core.model.SysMenu" >
+    update t_sys_menu
+    <set >
+      <if test="smname != null" >
+        smname = #{smname,jdbcType=VARCHAR},
+      </if>
+      <if test="smpath != null" >
+        smpath = #{smpath,jdbcType=VARCHAR},
+      </if>
+      <if test="smparameter != null" >
+        smparameter = #{smparameter,jdbcType=VARCHAR},
+      </if>
+      <if test="smmethod != null" >
+        smmethod = #{smmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="smfunctiondesc != null" >
+        smfunctiondesc = #{smfunctiondesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where smid = #{smid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.core.model.SysMenu" >
+    update t_sys_menu
+    set smname = #{smname,jdbcType=VARCHAR},
+      smpath = #{smpath,jdbcType=VARCHAR},
+      smparameter = #{smparameter,jdbcType=VARCHAR},
+      smmethod = #{smmethod,jdbcType=VARCHAR},
+      smfunctiondesc = #{smfunctiondesc,jdbcType=VARCHAR}
+    where smid = #{smid,jdbcType=BIGINT}
+  </update>
+</mapper>

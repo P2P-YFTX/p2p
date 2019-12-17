@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.core.mapper.AccountBankMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.core.model.AccountBank" >
+    <constructor >
+      <idArg column="abid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="auserid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="abank" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="banktype" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="abankphone" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="abankpass" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="acity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="aprovince" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="aisbind" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="addtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    abid, auserid, abank, banktype, abankphone, abankpass, acity, aprovince, aisbind, 
+    addtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_bank
+    where abid = #{abid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_account_bank
+    where abid = #{abid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.core.model.AccountBank" >
+    insert into t_account_bank (abid, auserid, abank, 
+      banktype, abankphone, abankpass, 
+      acity, aprovince, aisbind, 
+      addtime)
+    values (#{abid,jdbcType=INTEGER}, #{auserid,jdbcType=INTEGER}, #{abank,jdbcType=VARCHAR}, 
+      #{banktype,jdbcType=VARCHAR}, #{abankphone,jdbcType=BIGINT}, #{abankpass,jdbcType=BIGINT}, 
+      #{acity,jdbcType=INTEGER}, #{aprovince,jdbcType=INTEGER}, #{aisbind,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.core.model.AccountBank" >
+    insert into t_account_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="abid != null" >
+        abid,
+      </if>
+      <if test="auserid != null" >
+        auserid,
+      </if>
+      <if test="abank != null" >
+        abank,
+      </if>
+      <if test="banktype != null" >
+        banktype,
+      </if>
+      <if test="abankphone != null" >
+        abankphone,
+      </if>
+      <if test="abankpass != null" >
+        abankpass,
+      </if>
+      <if test="acity != null" >
+        acity,
+      </if>
+      <if test="aprovince != null" >
+        aprovince,
+      </if>
+      <if test="aisbind != null" >
+        aisbind,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="abid != null" >
+        #{abid,jdbcType=INTEGER},
+      </if>
+      <if test="auserid != null" >
+        #{auserid,jdbcType=INTEGER},
+      </if>
+      <if test="abank != null" >
+        #{abank,jdbcType=VARCHAR},
+      </if>
+      <if test="banktype != null" >
+        #{banktype,jdbcType=VARCHAR},
+      </if>
+      <if test="abankphone != null" >
+        #{abankphone,jdbcType=BIGINT},
+      </if>
+      <if test="abankpass != null" >
+        #{abankpass,jdbcType=BIGINT},
+      </if>
+      <if test="acity != null" >
+        #{acity,jdbcType=INTEGER},
+      </if>
+      <if test="aprovince != null" >
+        #{aprovince,jdbcType=INTEGER},
+      </if>
+      <if test="aisbind != null" >
+        #{aisbind,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.core.model.AccountBank" >
+    update t_account_bank
+    <set >
+      <if test="auserid != null" >
+        auserid = #{auserid,jdbcType=INTEGER},
+      </if>
+      <if test="abank != null" >
+        abank = #{abank,jdbcType=VARCHAR},
+      </if>
+      <if test="banktype != null" >
+        banktype = #{banktype,jdbcType=VARCHAR},
+      </if>
+      <if test="abankphone != null" >
+        abankphone = #{abankphone,jdbcType=BIGINT},
+      </if>
+      <if test="abankpass != null" >
+        abankpass = #{abankpass,jdbcType=BIGINT},
+      </if>
+      <if test="acity != null" >
+        acity = #{acity,jdbcType=INTEGER},
+      </if>
+      <if test="aprovince != null" >
+        aprovince = #{aprovince,jdbcType=INTEGER},
+      </if>
+      <if test="aisbind != null" >
+        aisbind = #{aisbind,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where abid = #{abid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.core.model.AccountBank" >
+    update t_account_bank
+    set auserid = #{auserid,jdbcType=INTEGER},
+      abank = #{abank,jdbcType=VARCHAR},
+      banktype = #{banktype,jdbcType=VARCHAR},
+      abankphone = #{abankphone,jdbcType=BIGINT},
+      abankpass = #{abankpass,jdbcType=BIGINT},
+      acity = #{acity,jdbcType=INTEGER},
+      aprovince = #{aprovince,jdbcType=INTEGER},
+      aisbind = #{aisbind,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where abid = #{abid,jdbcType=INTEGER}
+  </update>
+</mapper>

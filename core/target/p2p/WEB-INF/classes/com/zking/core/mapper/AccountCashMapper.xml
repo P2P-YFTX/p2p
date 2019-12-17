@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.core.mapper.AccountCashMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.core.model.AccountCash" >
+    <constructor >
+      <idArg column="cid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cashstatus" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cardno" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="banktype" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="money" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="realmoney" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="fee" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="verifyuser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="verifytime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="verifyremark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="addtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cid, userid, cashstatus, cardno, banktype, money, realmoney, fee, verifyuser, verifytime, 
+    verifyremark, addtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_cash
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_account_cash
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.core.model.AccountCash" >
+    insert into t_account_cash (cid, userid, cashstatus, 
+      cardno, banktype, money, 
+      realmoney, fee, verifyuser, 
+      verifytime, verifyremark, addtime
+      )
+    values (#{cid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{cashstatus,jdbcType=INTEGER}, 
+      #{cardno,jdbcType=VARCHAR}, #{banktype,jdbcType=VARCHAR}, #{money,jdbcType=REAL}, 
+      #{realmoney,jdbcType=REAL}, #{fee,jdbcType=REAL}, #{verifyuser,jdbcType=VARCHAR}, 
+      #{verifytime,jdbcType=TIMESTAMP}, #{verifyremark,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.core.model.AccountCash" >
+    insert into t_account_cash
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="cashstatus != null" >
+        cashstatus,
+      </if>
+      <if test="cardno != null" >
+        cardno,
+      </if>
+      <if test="banktype != null" >
+        banktype,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="realmoney != null" >
+        realmoney,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="verifyuser != null" >
+        verifyuser,
+      </if>
+      <if test="verifytime != null" >
+        verifytime,
+      </if>
+      <if test="verifyremark != null" >
+        verifyremark,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cashstatus != null" >
+        #{cashstatus,jdbcType=INTEGER},
+      </if>
+      <if test="cardno != null" >
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="banktype != null" >
+        #{banktype,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="realmoney != null" >
+        #{realmoney,jdbcType=REAL},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=REAL},
+      </if>
+      <if test="verifyuser != null" >
+        #{verifyuser,jdbcType=VARCHAR},
+      </if>
+      <if test="verifytime != null" >
+        #{verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyremark != null" >
+        #{verifyremark,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.core.model.AccountCash" >
+    update t_account_cash
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cashstatus != null" >
+        cashstatus = #{cashstatus,jdbcType=INTEGER},
+      </if>
+      <if test="cardno != null" >
+        cardno = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="banktype != null" >
+        banktype = #{banktype,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="realmoney != null" >
+        realmoney = #{realmoney,jdbcType=REAL},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=REAL},
+      </if>
+      <if test="verifyuser != null" >
+        verifyuser = #{verifyuser,jdbcType=VARCHAR},
+      </if>
+      <if test="verifytime != null" >
+        verifytime = #{verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyremark != null" >
+        verifyremark = #{verifyremark,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.core.model.AccountCash" >
+    update t_account_cash
+    set userid = #{userid,jdbcType=INTEGER},
+      cashstatus = #{cashstatus,jdbcType=INTEGER},
+      cardno = #{cardno,jdbcType=VARCHAR},
+      banktype = #{banktype,jdbcType=VARCHAR},
+      money = #{money,jdbcType=REAL},
+      realmoney = #{realmoney,jdbcType=REAL},
+      fee = #{fee,jdbcType=REAL},
+      verifyuser = #{verifyuser,jdbcType=VARCHAR},
+      verifytime = #{verifytime,jdbcType=TIMESTAMP},
+      verifyremark = #{verifyremark,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>

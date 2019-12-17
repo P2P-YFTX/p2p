@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.core.mapper.BorrowApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.core.model.BorrowApply" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="money" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="timelimit" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="realname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="province" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="city" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="addtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="verifyuser" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="verifytime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="verifyremark" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, name, money, timelimit, phone, realname, province, city, addtime, status, 
+    verifyuser, verifytime, verifyremark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_borrow_apply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_borrow_apply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.core.model.BorrowApply" >
+    insert into t_borrow_apply (id, userid, name, 
+      money, timelimit, phone, 
+      realname, province, city, 
+      addtime, status, verifyuser, 
+      verifytime, verifyremark)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{money,jdbcType=REAL}, #{timelimit,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{verifyuser,jdbcType=INTEGER}, 
+      #{verifytime,jdbcType=TIMESTAMP}, #{verifyremark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.core.model.BorrowApply" >
+    insert into t_borrow_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="timelimit != null" >
+        timelimit,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="verifyuser != null" >
+        verifyuser,
+      </if>
+      <if test="verifytime != null" >
+        verifytime,
+      </if>
+      <if test="verifyremark != null" >
+        verifyremark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="timelimit != null" >
+        #{timelimit,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="verifyuser != null" >
+        #{verifyuser,jdbcType=INTEGER},
+      </if>
+      <if test="verifytime != null" >
+        #{verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyremark != null" >
+        #{verifyremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.core.model.BorrowApply" >
+    update t_borrow_apply
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="timelimit != null" >
+        timelimit = #{timelimit,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="verifyuser != null" >
+        verifyuser = #{verifyuser,jdbcType=INTEGER},
+      </if>
+      <if test="verifytime != null" >
+        verifytime = #{verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyremark != null" >
+        verifyremark = #{verifyremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.core.model.BorrowApply" >
+    update t_borrow_apply
+    set userid = #{userid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      money = #{money,jdbcType=REAL},
+      timelimit = #{timelimit,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      verifyuser = #{verifyuser,jdbcType=INTEGER},
+      verifytime = #{verifytime,jdbcType=TIMESTAMP},
+      verifyremark = #{verifyremark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

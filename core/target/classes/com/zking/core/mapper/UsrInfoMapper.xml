@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.core.mapper.UsrInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.core.model.UsrInfo" >
+    <constructor >
+      <idArg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ufrealName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufsex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufidNumber" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufphoneNumber" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufbirthday" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufincomeGrade" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="ufmarriage" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufkidCount" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufeducationbackground" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufliveplace" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userid, ufrealName, ufsex, ufidNumber, ufphoneNumber, ufbirthday, ufincomeGrade, 
+    ufmarriage, ufkidCount, ufeducationbackground, ufliveplace
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_usr_info
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_usr_info
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.core.model.UsrInfo" >
+    insert into t_usr_info (userid, ufrealName, ufsex, 
+      ufidNumber, ufphoneNumber, ufbirthday, 
+      ufincomeGrade, ufmarriage, ufkidCount, 
+      ufeducationbackground, ufliveplace)
+    values (#{userid,jdbcType=INTEGER}, #{ufrealname,jdbcType=VARCHAR}, #{ufsex,jdbcType=VARCHAR}, 
+      #{ufidnumber,jdbcType=VARCHAR}, #{ufphonenumber,jdbcType=VARCHAR}, #{ufbirthday,jdbcType=VARCHAR}, 
+      #{ufincomegrade,jdbcType=REAL}, #{ufmarriage,jdbcType=VARCHAR}, #{ufkidcount,jdbcType=VARCHAR}, 
+      #{ufeducationbackground,jdbcType=VARCHAR}, #{ufliveplace,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.core.model.UsrInfo" >
+    insert into t_usr_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="ufrealname != null" >
+        ufrealName,
+      </if>
+      <if test="ufsex != null" >
+        ufsex,
+      </if>
+      <if test="ufidnumber != null" >
+        ufidNumber,
+      </if>
+      <if test="ufphonenumber != null" >
+        ufphoneNumber,
+      </if>
+      <if test="ufbirthday != null" >
+        ufbirthday,
+      </if>
+      <if test="ufincomegrade != null" >
+        ufincomeGrade,
+      </if>
+      <if test="ufmarriage != null" >
+        ufmarriage,
+      </if>
+      <if test="ufkidcount != null" >
+        ufkidCount,
+      </if>
+      <if test="ufeducationbackground != null" >
+        ufeducationbackground,
+      </if>
+      <if test="ufliveplace != null" >
+        ufliveplace,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="ufrealname != null" >
+        #{ufrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="ufsex != null" >
+        #{ufsex,jdbcType=VARCHAR},
+      </if>
+      <if test="ufidnumber != null" >
+        #{ufidnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ufphonenumber != null" >
+        #{ufphonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ufbirthday != null" >
+        #{ufbirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="ufincomegrade != null" >
+        #{ufincomegrade,jdbcType=REAL},
+      </if>
+      <if test="ufmarriage != null" >
+        #{ufmarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="ufkidcount != null" >
+        #{ufkidcount,jdbcType=VARCHAR},
+      </if>
+      <if test="ufeducationbackground != null" >
+        #{ufeducationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="ufliveplace != null" >
+        #{ufliveplace,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.core.model.UsrInfo" >
+    update t_usr_info
+    <set >
+      <if test="ufrealname != null" >
+        ufrealName = #{ufrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="ufsex != null" >
+        ufsex = #{ufsex,jdbcType=VARCHAR},
+      </if>
+      <if test="ufidnumber != null" >
+        ufidNumber = #{ufidnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ufphonenumber != null" >
+        ufphoneNumber = #{ufphonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ufbirthday != null" >
+        ufbirthday = #{ufbirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="ufincomegrade != null" >
+        ufincomeGrade = #{ufincomegrade,jdbcType=REAL},
+      </if>
+      <if test="ufmarriage != null" >
+        ufmarriage = #{ufmarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="ufkidcount != null" >
+        ufkidCount = #{ufkidcount,jdbcType=VARCHAR},
+      </if>
+      <if test="ufeducationbackground != null" >
+        ufeducationbackground = #{ufeducationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="ufliveplace != null" >
+        ufliveplace = #{ufliveplace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.core.model.UsrInfo" >
+    update t_usr_info
+    set ufrealName = #{ufrealname,jdbcType=VARCHAR},
+      ufsex = #{ufsex,jdbcType=VARCHAR},
+      ufidNumber = #{ufidnumber,jdbcType=VARCHAR},
+      ufphoneNumber = #{ufphonenumber,jdbcType=VARCHAR},
+      ufbirthday = #{ufbirthday,jdbcType=VARCHAR},
+      ufincomeGrade = #{ufincomegrade,jdbcType=REAL},
+      ufmarriage = #{ufmarriage,jdbcType=VARCHAR},
+      ufkidCount = #{ufkidcount,jdbcType=VARCHAR},
+      ufeducationbackground = #{ufeducationbackground,jdbcType=VARCHAR},
+      ufliveplace = #{ufliveplace,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

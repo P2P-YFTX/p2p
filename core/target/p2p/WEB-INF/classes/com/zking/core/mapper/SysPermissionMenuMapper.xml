@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.core.mapper.SysPermissionMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.core.model.SysPermissionMenu" >
+    <constructor >
+      <idArg column="spmid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="spmspid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="spmsmid" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    spmid, spmspid, spmsmid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_permission_menu
+    where spmid = #{spmid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sys_permission_menu
+    where spmid = #{spmid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.core.model.SysPermissionMenu" >
+    insert into t_sys_permission_menu (spmid, spmspid, spmsmid
+      )
+    values (#{spmid,jdbcType=BIGINT}, #{spmspid,jdbcType=BIGINT}, #{spmsmid,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.core.model.SysPermissionMenu" >
+    insert into t_sys_permission_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spmid != null" >
+        spmid,
+      </if>
+      <if test="spmspid != null" >
+        spmspid,
+      </if>
+      <if test="spmsmid != null" >
+        spmsmid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spmid != null" >
+        #{spmid,jdbcType=BIGINT},
+      </if>
+      <if test="spmspid != null" >
+        #{spmspid,jdbcType=BIGINT},
+      </if>
+      <if test="spmsmid != null" >
+        #{spmsmid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.core.model.SysPermissionMenu" >
+    update t_sys_permission_menu
+    <set >
+      <if test="spmspid != null" >
+        spmspid = #{spmspid,jdbcType=BIGINT},
+      </if>
+      <if test="spmsmid != null" >
+        spmsmid = #{spmsmid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where spmid = #{spmid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.core.model.SysPermissionMenu" >
+    update t_sys_permission_menu
+    set spmspid = #{spmspid,jdbcType=BIGINT},
+      spmsmid = #{spmsmid,jdbcType=BIGINT}
+    where spmid = #{spmid,jdbcType=BIGINT}
+  </update>
+</mapper>
