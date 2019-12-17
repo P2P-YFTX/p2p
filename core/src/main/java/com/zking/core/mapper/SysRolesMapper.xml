@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.core.mapper.SysRolesMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.core.model.SysRoles" >
+    <constructor >
+      <idArg column="srid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="srname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="srdescription" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    srid, srname, srdescription
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_roles
+    where srid = #{srid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sys_roles
+    where srid = #{srid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.core.model.SysRoles" >
+    insert into t_sys_roles (srid, srname, srdescription
+      )
+    values (#{srid,jdbcType=BIGINT}, #{srname,jdbcType=VARCHAR}, #{srdescription,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.core.model.SysRoles" >
+    insert into t_sys_roles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="srid != null" >
+        srid,
+      </if>
+      <if test="srname != null" >
+        srname,
+      </if>
+      <if test="srdescription != null" >
+        srdescription,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="srid != null" >
+        #{srid,jdbcType=BIGINT},
+      </if>
+      <if test="srname != null" >
+        #{srname,jdbcType=VARCHAR},
+      </if>
+      <if test="srdescription != null" >
+        #{srdescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.core.model.SysRoles" >
+    update t_sys_roles
+    <set >
+      <if test="srname != null" >
+        srname = #{srname,jdbcType=VARCHAR},
+      </if>
+      <if test="srdescription != null" >
+        srdescription = #{srdescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where srid = #{srid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.core.model.SysRoles" >
+    update t_sys_roles
+    set srname = #{srname,jdbcType=VARCHAR},
+      srdescription = #{srdescription,jdbcType=VARCHAR}
+    where srid = #{srid,jdbcType=BIGINT}
+  </update>
+</mapper>

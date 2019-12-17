@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.core.mapper.AccountLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.core.model.AccountLog" >
+    <constructor >
+      <idArg column="logid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="logmoney" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="logtype" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="accounttype" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="totalmoney" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="usemoney" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="frostmoney" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="haveinterest" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="waitinterest" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="waittotalmoney" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="addtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    logid, userid, logmoney, logtype, accounttype, totalmoney, usemoney, frostmoney, 
+    haveinterest, waitinterest, waittotalmoney, remark, addtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_log
+    where logid = #{logid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_account_log
+    where logid = #{logid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.core.model.AccountLog" >
+    insert into t_account_log (logid, userid, logmoney, 
+      logtype, accounttype, totalmoney, 
+      usemoney, frostmoney, haveinterest, 
+      waitinterest, waittotalmoney, remark, 
+      addtime)
+    values (#{logid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{logmoney,jdbcType=REAL}, 
+      #{logtype,jdbcType=INTEGER}, #{accounttype,jdbcType=VARCHAR}, #{totalmoney,jdbcType=REAL}, 
+      #{usemoney,jdbcType=REAL}, #{frostmoney,jdbcType=REAL}, #{haveinterest,jdbcType=REAL}, 
+      #{waitinterest,jdbcType=REAL}, #{waittotalmoney,jdbcType=REAL}, #{remark,jdbcType=VARCHAR}, 
+      #{addtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.core.model.AccountLog" >
+    insert into t_account_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        logid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="logmoney != null" >
+        logmoney,
+      </if>
+      <if test="logtype != null" >
+        logtype,
+      </if>
+      <if test="accounttype != null" >
+        accounttype,
+      </if>
+      <if test="totalmoney != null" >
+        totalmoney,
+      </if>
+      <if test="usemoney != null" >
+        usemoney,
+      </if>
+      <if test="frostmoney != null" >
+        frostmoney,
+      </if>
+      <if test="haveinterest != null" >
+        haveinterest,
+      </if>
+      <if test="waitinterest != null" >
+        waitinterest,
+      </if>
+      <if test="waittotalmoney != null" >
+        waittotalmoney,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        #{logid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="logmoney != null" >
+        #{logmoney,jdbcType=REAL},
+      </if>
+      <if test="logtype != null" >
+        #{logtype,jdbcType=INTEGER},
+      </if>
+      <if test="accounttype != null" >
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="totalmoney != null" >
+        #{totalmoney,jdbcType=REAL},
+      </if>
+      <if test="usemoney != null" >
+        #{usemoney,jdbcType=REAL},
+      </if>
+      <if test="frostmoney != null" >
+        #{frostmoney,jdbcType=REAL},
+      </if>
+      <if test="haveinterest != null" >
+        #{haveinterest,jdbcType=REAL},
+      </if>
+      <if test="waitinterest != null" >
+        #{waitinterest,jdbcType=REAL},
+      </if>
+      <if test="waittotalmoney != null" >
+        #{waittotalmoney,jdbcType=REAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.core.model.AccountLog" >
+    update t_account_log
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="logmoney != null" >
+        logmoney = #{logmoney,jdbcType=REAL},
+      </if>
+      <if test="logtype != null" >
+        logtype = #{logtype,jdbcType=INTEGER},
+      </if>
+      <if test="accounttype != null" >
+        accounttype = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="totalmoney != null" >
+        totalmoney = #{totalmoney,jdbcType=REAL},
+      </if>
+      <if test="usemoney != null" >
+        usemoney = #{usemoney,jdbcType=REAL},
+      </if>
+      <if test="frostmoney != null" >
+        frostmoney = #{frostmoney,jdbcType=REAL},
+      </if>
+      <if test="haveinterest != null" >
+        haveinterest = #{haveinterest,jdbcType=REAL},
+      </if>
+      <if test="waitinterest != null" >
+        waitinterest = #{waitinterest,jdbcType=REAL},
+      </if>
+      <if test="waittotalmoney != null" >
+        waittotalmoney = #{waittotalmoney,jdbcType=REAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.core.model.AccountLog" >
+    update t_account_log
+    set userid = #{userid,jdbcType=INTEGER},
+      logmoney = #{logmoney,jdbcType=REAL},
+      logtype = #{logtype,jdbcType=INTEGER},
+      accounttype = #{accounttype,jdbcType=VARCHAR},
+      totalmoney = #{totalmoney,jdbcType=REAL},
+      usemoney = #{usemoney,jdbcType=REAL},
+      frostmoney = #{frostmoney,jdbcType=REAL},
+      haveinterest = #{haveinterest,jdbcType=REAL},
+      waitinterest = #{waitinterest,jdbcType=REAL},
+      waittotalmoney = #{waittotalmoney,jdbcType=REAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+</mapper>

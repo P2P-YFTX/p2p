@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.core.mapper.FinRepayMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.core.model.FinRepay" >
+    <constructor >
+      <idArg column="rid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="projectid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="borrowtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="repaytime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="repayyestime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="repayaccount" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="repayyesaccount" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="lateday" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="lateinterest" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="capital" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="interest" jdbcType="REAL" javaType="java.lang.Float" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rid, userid, status, projectid, borrowtime, repaytime, repayyestime, repayaccount, 
+    repayyesaccount, lateday, lateinterest, capital, interest
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_fin_repay
+    where rid = #{rid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_fin_repay
+    where rid = #{rid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.core.model.FinRepay" >
+    insert into t_fin_repay (rid, userid, status, 
+      projectid, borrowtime, repaytime, 
+      repayyestime, repayaccount, repayyesaccount, 
+      lateday, lateinterest, capital, 
+      interest)
+    values (#{rid,jdbcType=BIGINT}, #{userid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{projectid,jdbcType=BIGINT}, #{borrowtime,jdbcType=TIMESTAMP}, #{repaytime,jdbcType=INTEGER}, 
+      #{repayyestime,jdbcType=INTEGER}, #{repayaccount,jdbcType=REAL}, #{repayyesaccount,jdbcType=REAL}, 
+      #{lateday,jdbcType=INTEGER}, #{lateinterest,jdbcType=REAL}, #{capital,jdbcType=REAL}, 
+      #{interest,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.core.model.FinRepay" >
+    insert into t_fin_repay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="projectid != null" >
+        projectid,
+      </if>
+      <if test="borrowtime != null" >
+        borrowtime,
+      </if>
+      <if test="repaytime != null" >
+        repaytime,
+      </if>
+      <if test="repayyestime != null" >
+        repayyestime,
+      </if>
+      <if test="repayaccount != null" >
+        repayaccount,
+      </if>
+      <if test="repayyesaccount != null" >
+        repayyesaccount,
+      </if>
+      <if test="lateday != null" >
+        lateday,
+      </if>
+      <if test="lateinterest != null" >
+        lateinterest,
+      </if>
+      <if test="capital != null" >
+        capital,
+      </if>
+      <if test="interest != null" >
+        interest,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=BIGINT},
+      </if>
+      <if test="borrowtime != null" >
+        #{borrowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaytime != null" >
+        #{repaytime,jdbcType=INTEGER},
+      </if>
+      <if test="repayyestime != null" >
+        #{repayyestime,jdbcType=INTEGER},
+      </if>
+      <if test="repayaccount != null" >
+        #{repayaccount,jdbcType=REAL},
+      </if>
+      <if test="repayyesaccount != null" >
+        #{repayyesaccount,jdbcType=REAL},
+      </if>
+      <if test="lateday != null" >
+        #{lateday,jdbcType=INTEGER},
+      </if>
+      <if test="lateinterest != null" >
+        #{lateinterest,jdbcType=REAL},
+      </if>
+      <if test="capital != null" >
+        #{capital,jdbcType=REAL},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.core.model.FinRepay" >
+    update t_fin_repay
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        projectid = #{projectid,jdbcType=BIGINT},
+      </if>
+      <if test="borrowtime != null" >
+        borrowtime = #{borrowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaytime != null" >
+        repaytime = #{repaytime,jdbcType=INTEGER},
+      </if>
+      <if test="repayyestime != null" >
+        repayyestime = #{repayyestime,jdbcType=INTEGER},
+      </if>
+      <if test="repayaccount != null" >
+        repayaccount = #{repayaccount,jdbcType=REAL},
+      </if>
+      <if test="repayyesaccount != null" >
+        repayyesaccount = #{repayyesaccount,jdbcType=REAL},
+      </if>
+      <if test="lateday != null" >
+        lateday = #{lateday,jdbcType=INTEGER},
+      </if>
+      <if test="lateinterest != null" >
+        lateinterest = #{lateinterest,jdbcType=REAL},
+      </if>
+      <if test="capital != null" >
+        capital = #{capital,jdbcType=REAL},
+      </if>
+      <if test="interest != null" >
+        interest = #{interest,jdbcType=REAL},
+      </if>
+    </set>
+    where rid = #{rid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.core.model.FinRepay" >
+    update t_fin_repay
+    set userid = #{userid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      projectid = #{projectid,jdbcType=BIGINT},
+      borrowtime = #{borrowtime,jdbcType=TIMESTAMP},
+      repaytime = #{repaytime,jdbcType=INTEGER},
+      repayyestime = #{repayyestime,jdbcType=INTEGER},
+      repayaccount = #{repayaccount,jdbcType=REAL},
+      repayyesaccount = #{repayyesaccount,jdbcType=REAL},
+      lateday = #{lateday,jdbcType=INTEGER},
+      lateinterest = #{lateinterest,jdbcType=REAL},
+      capital = #{capital,jdbcType=REAL},
+      interest = #{interest,jdbcType=REAL}
+    where rid = #{rid,jdbcType=BIGINT}
+  </update>
+</mapper>
